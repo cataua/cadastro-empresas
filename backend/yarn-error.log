@@ -1,0 +1,46 @@
+Arguments: 
+  /usr/local/bin/node /mnt/c/Users/roger/AppData/Roaming/npm/node_modules/yarn/bin/yarn.js add nodemon mongoose node-express node
+
+PATH: 
+  /home/rogerio/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Python39/Scripts/:/mnt/c/Python39/:/mnt/c/Program Files (x86)/Common Files/Intel/Shared Libraries/redist/intel64/compiler:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/nodejs/node_modules/npm/bin/node-gyp-bin:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/apache-maven-3.6.3/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/ProgramData/DockerDesktop/version-bin:/mnt/c/Users/roger/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/roger/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/roger/AppData/Roaming/npm:/mnt/c/Program Files/JetBrains/PyCharm Community Edition 2020.3.3/bin:/mnt/c/tools/dart-sdk/bin:/mnt/c/Users/roger/AppData/Roaming/Pub/Cache/bin:/mnt/c/Program Files/JetBrains/CLion 2021.2/bin:/snap/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.17.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/node-express: Not found
+      at Request.params.callback [as _callback] (/mnt/c/Users/roger/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/mnt/c/Users/roger/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:140662:22)
+      at Request.emit (events.js:376:20)
+      at Request.<anonymous> (/mnt/c/Users/roger/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:141634:10)
+      at Request.emit (events.js:376:20)
+      at IncomingMessage.<anonymous> (/mnt/c/Users/roger/AppData/Roaming/npm/node_modules/yarn/lib/cli.js:141556:12)
+      at Object.onceWrapper (events.js:482:28)
+      at IncomingMessage.emit (events.js:388:22)
+      at endReadableNT (internal/streams/readable.js:1336:12)
+      at processTicksAndRejections (internal/process/task_queues.js:82:21)
+
+npm manifest: 
+  {
+    "name": "backend-cempresas",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dbConnection.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

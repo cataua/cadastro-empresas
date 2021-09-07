@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Paper, Card, CardContent, CardMedia, Typography, Grid, List, ListItem, Divider, ListItemIcon, ListItemText} from '@material-ui/core';
 import BusinessIcon from '@material-ui/icons/Business';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import { getCompanies } from "../../reducers/company.reducer";
 import './css/Company.css';
+import {useDispatch, useSelector} from "react-redux";
 
 const Activities = (activities) => {
     if (activities.length > 0) {
@@ -29,72 +30,70 @@ const Activities = (activities) => {
 }
 
 const Companies = ({data}) => {
-    return data.map((company, index) => (
-        <Card key={company.cnpj}>
-            <CardContent>
-                <Typography component='h4' variant={'h4'}>
-                    {company.nomeFantasia}
-                </Typography>
-                <Typography component={'h5'} variant={'h5'} color={'textSecondary'}>
-                    ({company.nome})
-                </Typography>
-                <Divider light className={'mx-2'}/>
-                <Grid container>
-                    <Grid item sm={12}>
-                        <Typography component={'h5'} variant={'h5'}>
-                            Atividade primária
-                        </Typography>
+    console.log(`%c ${data}`, 'background-color: white; color: black;');
+    if (data.length > 0) {
+        return data.map((company, index) => (
+            <Card key={company.cnpj}>
+                <CardContent>
+                    <Typography component='h4' variant={'h4'}>
+                        {company.nomeFantasia}
+                    </Typography>
+                    <Typography component={'h5'} variant={'h5'} color={'textSecondary'}>
+                        ({company.nome})
+                    </Typography>
+                    <Divider light className={'mx-2'}/>
+                    <Grid container>
+                        <Grid item sm={12}>
+                            <Typography component={'h5'} variant={'h5'}>
+                                Atividade primária
+                            </Typography>
+                        </Grid>
+                        <Grid item sm={12}>
+                            <List>
+                                {Activities(company.atividadePrincipal)}
+                            </List>
+                        </Grid>
                     </Grid>
-                    <Grid item sm={12}>
-                        <List>
-                            {Activities(company.atividadePrincipal)}
-                        </List>
-                    </Grid>
-                </Grid>
-            </CardContent>
-            <CardMedia>
+                </CardContent>
+                <CardMedia>
 
-            </CardMedia>
-        </Card>
-    ));
+                </CardMedia>
+            </Card>
+        ));
+    } else {
+        return (
+            <React.Fragment>
+                <Typography component={'h4'} variant={'h4'}>
+                    Sem empresas no momento.
+                </Typography>
+            </React.Fragment>
+        )
+    }
 }
 
 const ListCompany = () => {
-    const companies = [  {
-        _id: '61368a29f2862bca43a7549b',
-        cnpj: '21835732000171',
-        nome: 'Stark Industries Inc.',
-        atividadePrincipal: [
-            {
-                text: 'Atividades de televisão aberta',
-                code: "60.21-7-00"
-            }
-        ],
-        telefone: '(11) 9090-0900',
-        situacao: 'ATIVA',
-        bairro: 'Centro',
-        logradouro: 'Rua Barão de Nepomucento',
-        numero: '1231',
-        complemento: '',
-        cep: '35090-090',
-        nomeFantasia: 'Vingadores',
-        __v: 0
-    },
-        {
-            _id: '61369178f8141af88af22dc0',
-            cnpj: '22988696000149',
-            nome: 'Daily Planet',
-            atividadePrincipal: [],
-            telefone: '(11) 8290-0911',
-            situacao: 'ATIVA',
-            bairro: 'Centro',
-            logradouro: 'Rua Augusta',
-            numero: '125',
-            complemento: '',
-            cep: '35090-191',
-            nomeFantasia: 'Daily Planet',
-            __v: 0
-        }];
+    const dispatch = useDispatch();
+    const companies = useSelector(getCompanies);
+    const companiesStatus = useSelector(state => state.company.status);
+    const error = useSelector(state => state.company.error)
+    const data = useSelector(state => state.company.companies);
+    useEffect(() => {
+        if (companiesStatus === 'idle') {
+            dispatch(getCompanies());
+        }
+    }, [companiesStatus, dispatch]);
+    let content;
+    console.log({companiesStatus})
+    if (companiesStatus === 'loading') {
+        content = <Typography component={'h3'} variant={'h3'}>Carregando...</Typography>
+    } else if (companiesStatus === 'succeeded') {
+        content = <Companies data={data} />
+    } else if (companiesStatus === 'fail') {
+        content = <React.Fragment>
+            <Typography component={'h3'} variant={'h3'}>Falha ao carregar...</Typography>
+            <Typography component={'p'}>{error}</Typography>
+        </React.Fragment>
+    }
     return (
         <Paper elevation={0}>
            <h2>
@@ -103,7 +102,7 @@ const ListCompany = () => {
            </h2>
             <Grid container>
                 <Grid item>
-                    <Companies data={companies} />
+                    {content}
                 </Grid>
             </Grid>
         </Paper>

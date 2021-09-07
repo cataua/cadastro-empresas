@@ -8,7 +8,7 @@ const api = {
 
 const getCompanies = createAsyncThunk('companies/getAll', async () => {
     const response = await axios.get(api.url);
-    return response.data;
+    return response.data.data;
 });
 
 const getCompany = createAsyncThunk('companies/get', async (cnpj) => {
@@ -24,14 +24,14 @@ const saveCompany = createAsyncThunk('companies/save', async (company) => {
 export const companySlice = createSlice({
     name: 'company',
     initialState: {
-        posts: [],
+        companies: [],
         status: 'idle',
         error: null,
     },
     reducers: {
-        getAll: (state) => state.posts,
-        get: (state, cnpj) => state.posts.find(post => post.cnpj === cnpj),
-        save: (state, company) => {
+        getAll: (company) => company.companies,
+        get: (company, cnpj) => company.companies.find(c => c.cnpj === cnpj),
+        save: (company, body) => {
 
         }
     },
@@ -42,6 +42,7 @@ export const companySlice = createSlice({
             })
             .addCase(getCompanies.fulfilled, (state, action) => {
                 state.status = 'succeeded';
+                state.companies = action.payload;
             })
             .addCase((getCompanies.rejected, (state, action) => {
                 state.status = 'failed';

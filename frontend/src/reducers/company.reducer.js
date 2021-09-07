@@ -29,8 +29,8 @@ export const companySlice = createSlice({
         error: null,
     },
     reducers: {
-        getAll: (company) => company.companies,
-        get: (company, cnpj) => company.companies.find(c => c.cnpj === cnpj),
+        getAll: (state) => state.companies,
+        get: (state, cnpj) => state.companies.find(c => c.cnpj === cnpj),
         save: (company, body) => {
 
         }

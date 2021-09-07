@@ -1,5 +1,18 @@
 import React, {useEffect} from 'react';
-import {Paper, Card, CardContent, CardMedia, Typography, Grid, List, ListItem, Divider, ListItemIcon, ListItemText} from '@material-ui/core';
+import {
+    Paper,
+    Card,
+    CardContent,
+    CardMedia,
+    Typography,
+    Grid,
+    List,
+    ListItem,
+    Divider,
+    ListItemIcon,
+    ListItemText,
+    CircularProgress,
+} from '@material-ui/core';
 import BusinessIcon from '@material-ui/icons/Business';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import { getCompanies } from "../../reducers/company.reducer";
@@ -14,7 +27,7 @@ const Activities = (activities) => {
                     <ListItemIcon>
                         <ReceiptIcon/>
                     </ListItemIcon>
-                    <ListItemText primary={`${activity.text} (${activity.code}`}/>
+                    <ListItemText primary={`${activity.text} (${activity.code})`}/>
                 </ListItem>
             </React.Fragment>
         ));
@@ -30,7 +43,6 @@ const Activities = (activities) => {
 }
 
 const Companies = ({data}) => {
-    console.log(`%c ${data}`, 'background-color: white; color: black;');
     if (data.length > 0) {
         return data.map((company, index) => (
             <Card key={company.cnpj}>
@@ -83,9 +95,8 @@ const ListCompany = () => {
         }
     }, [companiesStatus, dispatch]);
     let content;
-    console.log({companiesStatus})
     if (companiesStatus === 'loading') {
-        content = <Typography component={'h3'} variant={'h3'}>Carregando...</Typography>
+        content = <CircularProgress />
     } else if (companiesStatus === 'succeeded') {
         content = <Companies data={data} />
     } else if (companiesStatus === 'fail') {

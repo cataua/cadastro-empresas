@@ -1,0 +1,13 @@
+.MuiPaper-root {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.MuiDivider-root.mx-2 {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.MuiCard-root {
+    margin-bottom: 1.2rem;
+}

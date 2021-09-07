@@ -5,7 +5,7 @@ import './css/container.css';
 class ContainerEmpresas extends Component {
     render() {
         return (
-            <Container maxWidth="xl">
+            <Container maxWidth={false} className={'px-0'}>
                 {this.props.children}
             </Container>
         );

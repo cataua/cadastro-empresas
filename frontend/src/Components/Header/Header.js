@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Grid, Paper } from '@material-ui/core';
 import { openMenu } from '../../reducers/state';
 import { useDispatch } from "react-redux";

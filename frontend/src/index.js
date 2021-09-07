@@ -9,6 +9,8 @@ import store from './store';
 import { Provider } from "react-redux";
 import reportWebVitals from './reportWebVitals';
 
+import { getCompanies } from "./reducers/company.reducer";
+
 import '@fontsource/roboto';
 import './index.css';
 
@@ -16,6 +18,8 @@ import Container from './Components/Container';
 import Header from './Components/Header';
 import Home from './Components/Home';
 import { AddCompany, ListCompany, ViewCompany } from './Components/Company';
+
+store.dispatch(getCompanies());
 
 ReactDOM.render(
   <Provider store={store}>

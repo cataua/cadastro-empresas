@@ -6,3 +6,10 @@
 .navbar {
     padding: 0 15px;
 }
+
+@media (min-width: 600px) {
+    .MuiContainer-root.px-0 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
